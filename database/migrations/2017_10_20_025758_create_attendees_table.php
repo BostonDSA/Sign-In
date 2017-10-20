@@ -13,7 +13,14 @@ class CreateAttendeesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('attendees', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class CreateAttendeesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('attendees');
     }
 }
