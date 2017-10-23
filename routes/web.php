@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layout.master');
 });
 
-Route::post('/events/add', 'EventController@postAddAlbum');
+Route::post('/events/add', 'EventController@postAddEvent');
 
 Route::get('/events', 'EventController@getEvents');
 Route::get('/events/{id?}', 'EventController@getEvent');
