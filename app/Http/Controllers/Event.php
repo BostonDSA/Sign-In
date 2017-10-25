@@ -6,7 +6,20 @@ use Illuminate\Http\Request;
 
 class Event extends Controller
 {
-    public function postAddEvent() {
+    public function postAddEvent(Request $request) {
+    	$this->validate($request,[
+            'title' => 'required',
+        ]);
+
+        $title_input = $request->title;
+
+        $new_event = new \App\Event();
+
+            
+        $new_event->title = $title_input;
+        $new_event->save();
+   
+
     	return redirect("/thanks");
     }
 
