@@ -31,9 +31,8 @@
 				
 			</div>
 			<div class="col-md-10">
-				@yield('content')
-
 				<h1>Boston DSA Sign In</h1>
+				@yield('content')
 			</div>
 		</div>
 	</body>
