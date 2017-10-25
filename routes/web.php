@@ -18,12 +18,16 @@ Route::get('/', function () {
 Route::post('/events/add', 'EventController@postAddEvent');
 
 Route::get('/events', 'EventController@getEvents');
-Route::get('/events/{id?}', 'EventController@getEvent');
+Route::get('/{id?}', 'EventController@getEvent');
 Route::get('/events/confirm-delete/{id}', 'EventController@getConfirmDelete');
 Route::get('/events/delete/{id}', 'EventController@getDoDelete');
 
 Route::get('/event/add', function () {
-    return view('layout.master', ["type" => "event"])->nest("content", "event.add", ["type" => "event"]);
+    return view('layout.master')->nest("content", "event.add");
+});
+
+Route::get('/thanks', function() {
+	return view('layout.master')->nest("content", "layout.basic");
 });
 
 
