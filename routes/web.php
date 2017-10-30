@@ -12,27 +12,32 @@
 */
 
 Route::get('/', function () {
-    return view('layout.master');
+    return view('layouts.app');
 });
 
-Route::post('/events/add', 'Event@postAddEvent');
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/events', 'Event@getEvents');
-Route::get('/{id?}', 'Event@getEvent');
-Route::get('/events/confirm-delete/{id}', 'Event@getConfirmDelete');
-Route::get('/events/delete/{id}', 'Event@getDoDelete');
+	Route::post('/events/add', 'Event@postAddEvent');
 
-Route::get('/event/add', function () {
-    return view('layout.master')->nest("content", "event.add");
+	Route::get('/events', 'Event@getEvents');
+	Route::get('/events/confirm-delete/{id}', 'Event@getConfirmDelete');
+	Route::get('/events/delete/{id}', 'Event@getDoDelete');
+
+	Route::get('/event/add', function () {
+	    return view('layouts.app')->nest("content", "event.add");
+	});
+
+	Route::get('/thanks', function() {
+		return view('layouts.app')->nest("content", "layout.basic");
+	});
+
+
+	Route::get('/attendees', 'Attendee@index');
+	//Route::get("/attendees/{id?}", 'Attendee@show');
 });
 
-Route::get('/thanks', function() {
-	return view('layout.master')->nest("content", "layout.basic");
-});
+Route::get('/{id}', 'Event@getEvent');
 
-
-Route::get('/attendees', 'Attendee@index');
-Route::get("/attendees/{id?}", 'Attendee@show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
