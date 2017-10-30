@@ -33,3 +33,6 @@ Route::get('/thanks', function() {
 
 Route::get('/attendees', 'Attendee@index');
 Route::get("/attendees/{id?}", 'Attendee@show');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
