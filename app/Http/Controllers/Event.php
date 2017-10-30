@@ -24,11 +24,11 @@ class Event extends Controller
     }
 
     public function getEvents() {
-    	return view("layout.master")->nest("content", "event.index");
+    	return view("layouts.app")->nest("content", "event.index");
     }
 
     public function getEvent($id = null) {
-    	return view("layout.master")->nest("content", "attendee.add");
+    	return view("layouts.app")->nest("content", "attendee.add");
     }
 
     public function getConfirmDelete($id) {

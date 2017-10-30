@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::get('/thanks', function() {
-		return view('layouts.app')->nest("content", "layout.basic");
+		return view('layouts.app')->nest("content", "layouts.basic");
 	});
 
 
@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
 	//Route::get("/attendees/{id?}", 'Attendee@show');
 });
 
-Route::get('/{id}', 'Event@getEvent');
+//Route::get('/{id}', 'Event@getEvent');
 
 Auth::routes();
 
