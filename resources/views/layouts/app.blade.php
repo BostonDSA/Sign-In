@@ -87,7 +87,9 @@
             </div>
         </nav>
 
+        <main class="container">
         @yield('content')
+        </main>
     </div>
 
     <!-- Scripts -->

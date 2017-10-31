@@ -1,24 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Events</h1>
-<a href="/events/add">Add Event</a>
+<h1 class="pull-left">Events</h1>
+<a class="pull-right btn btn-primary" href="/event/add">Add Event</a>
 
 <table class="table">
 	<thead>
-		<th>
-			<td>title</td>
-			<td>actions</td>
-		</th>
+		<tr>
+			<th>title</th>
+			<th>actions</th>
+		</tr>
 	</thead>
 	<tbody>
+		@foreach($data as $item)
 		<tr>
-			<td>Event Title</td>
+			<td>{{ $item->title }}</td>
 			<td>
-				<a class="btn" href="/export/{id}">Export to Excel</a>
-				<a class="btn" href="/delete/{id}">Delete</a>
+				<a class="btn" href="/export/{{ $item->id }}">Export to Excel</a>
+				<a class="btn" href="/delete/{{ $item->id }}">Delete</a>
 			</td>
 		</tr>
+		@endforeach
 	</tbody>
 </table>
 

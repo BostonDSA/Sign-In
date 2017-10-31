@@ -11,6 +11,9 @@ class Event extends Controller
             'title' => 'required',
         ]);
 
+        $id = \Auth::user()->id;
+        $currentuser = \App\User::find($id);
+
         $title_input = $request->title;
 
         $new_event = new \App\Event();
@@ -18,13 +21,21 @@ class Event extends Controller
             
         $new_event->title = $title_input;
         $new_event->save();
+
+        $currentuser->events()->save($new_event);
    
 
     	return redirect("/thanks");
     }
 
     public function getEvents() {
-    	return view("layouts.app")->nest("content", "event.index");
+        $id = \Auth::user()->id;
+        $currentuser = \App\User::find($id);
+        $user = \App\User::where("id","=", $currentuser->id)->with("events")->first();
+
+        $events = $user->events;
+
+    	return view("layouts.app")->nest("content", "event.index", ["data" => $events]);
     }
 
     public function getEvent($id = null) {
