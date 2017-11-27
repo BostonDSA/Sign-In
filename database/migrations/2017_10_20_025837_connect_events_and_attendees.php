@@ -16,7 +16,7 @@ class ConnectEventsAndAttendees extends Migration
         Schema::table('attendees', function (Blueprint $table) {
 
             # Add a new INT field called `event_id` that has to be unsigned (i.e. positive)
-            $table->integer('event_id')->unsigned();
+            $table->integer('event_id')->unsigned()->nullable();
 
             # This field `event_id` is a foreign key that connects to the `id` field in the `events` table
             $table->foreign('event_id')->references('id')->on('events');
